@@ -131,6 +131,7 @@
   var x1,y1,x2,y2,xm,ym,xc,yc;//variable for drawing circle, 1 first marker, 2, second marker, m, middle point, c, circle center
   var MRD_L=0.0;
   var iris_diameter=0.0;
+  var iris_auto = 0.0;
   var mannual_MRD_L=0.0;
 
   var margin_L;
@@ -211,7 +212,7 @@
 
     var c_final = document.getElementById("final_report");
     var link = document.createElement('a');
-    var file_ID=file_name+"_"+MRD_L.toString()+"_"+mannual_MRD_L.toString()+"_"+iris_diameter.toString();
+    var file_ID=file_name+"_"+MRD_L.toString()+"_"+mannual_MRD_L.toString()+"_"+iris_diameter.toString()+"_"+iris_auto.toString();
     link.download = file_ID+".png";
     link.href = c_final.toDataURL()
     link.click();

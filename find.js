@@ -79,7 +79,7 @@ function find(edge){
     context.strokeStyle = "red";
     context.arc(result.center.x, result.center.y, result.radius, 0, 2 * Math.PI);
     context.stroke();
-
+    
     //calculate MRD
     var x=Math.trunc(result.center.x);
     var y=Math.trunc(result.center.y);
@@ -139,6 +139,7 @@ function find(edge){
     ctx_final.fillStyle = "#77f022";
     mannual_MRD_L=mannual_MRD_L*pixel_to_mm;
     mannual_MRD_L=mannual_MRD_L.toFixed(2);
+       
        //manual MRD
     ctx_final.fillText("Manual MRD: "+mannual_MRD_L.toString()+" mm",50,290)
     iris_diameter=2*mannual_r_L*pixel_to_mm;
@@ -146,7 +147,11 @@ function find(edge){
        //mannual measured diameter of iris
     ctx_final.fillStyle = "white";
     ctx_final.fillText("Mannual Measured Iris Diameter: "+iris_diameter.toString()+" mm",50,310)
-    //draw img_marker_background
+      //automatic iris diameter
+    iris_auto = result.radius*2*pixel_to_mm.toFixed(2)
+    iris_auto = iris_auto.toFixed(2)
+    ctx_final.fillText("Automatic Measured Iris Diameter: "+iris_auto.toString()+" mm",50,330)
+      //draw img_marker_background
     var img_marker=ctx_M.getImageData(0,0,c_M.width,c_M.height);
     ctx_final.putImageData(img_marker,300,0);
 
