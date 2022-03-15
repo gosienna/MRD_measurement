@@ -17,8 +17,9 @@ function add_event_marker_measurement(target){
 }
 function capture_M(event){
 
-  x = event.layerX;
-  y = event.layerY;
+  let cRect = c_M.getBoundingClientRect()
+  x = Math.round(event.clientX - cRect.left)
+  y = Math.round(event.clientY - cRect.top)
   //console.log(count);
   if(count_M==0){
     count_M=count_M+1;
@@ -54,10 +55,11 @@ function capture_M(event){
 
 
 function capture_circle_L(event){
-
+  let cRect = c_L.getBoundingClientRect()
+  
   if(count_L==0){
-    x1=event.layerX;
-    y1=event.layerY;
+    x1 = Math.round(event.clientX - cRect.left)
+    y1 = Math.round(event.clientY - cRect.top)
     //draw first mark over iris edge
     ctx_L.beginPath();
     ctx_L.arc(x1,y1, 2, 0, 2 * Math.PI);
@@ -67,8 +69,8 @@ function capture_circle_L(event){
     count_L=count_L+1;
 
   }else if(count_L==1){
-    x2=event.layerX;
-    y2=event.layerY;
+    x2 = Math.round(event.clientX - cRect.left)
+    y2 = Math.round(event.clientY - cRect.top)
     //draw first mark over iris edge
     ctx_L.beginPath();
     ctx_L.arc(x2,y2, 2, 0, 2 * Math.PI);
@@ -90,11 +92,10 @@ function capture_circle_L(event){
 
 
 function draw_circle_L(event){
-
+  let cRect = c_L.getBoundingClientRect()
   if(count_L==2){
   ctx_L.putImageData(img_left_background,0,0)
-
-  yc=event.layerY;
+  yc = Math.round(event.clientY - cRect.top)
   xc=-(yc-ym)*(y2-y1)/(x2-x1)+xm
 
   mannual_r_L=Math.pow(Math.pow((x1-xc),2)+Math.pow((y1-yc),2),0.5);
@@ -128,7 +129,7 @@ function draw_circle_L(event){
   //draw MRD line
   ctx_L.beginPath();
   ctx_L.moveTo(xc, yc);
-  ctx_L.lineTo(xc, event.layerY);
+  ctx_L.lineTo(xc, Math.round(event.clientY - cRect.top));
   ctx_L.strokeStyle = "#77f022";
   ctx_L.stroke();
   }

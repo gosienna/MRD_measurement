@@ -17,9 +17,10 @@ function add_event_window_capture(width_capture_window,height_capture_window){
 }
 
 function move_window(event) {
-
-          x = event.layerX;
-          y = event.layerY;
+          let cRect = c.getBoundingClientRect()
+          x = Math.round(event.clientX - cRect.left)
+          y = Math.round(event.clientY - cRect.top)
+          //console.log(x,y)
           ctx.putImageData(img_background,0,0);
           ctx.beginPath();
           ctx.rect(x-width_capture_window/2, y-height_capture_window/2, width_capture_window, height_capture_window);
@@ -29,6 +30,7 @@ function move_window(event) {
 
           var s=width_original_img/width_img_display;
           //console.log(img_original.width,img_original.height,count);
+          
           if(count==0){
             ctx_L.drawImage(img_original,x*s-s*width_capture_window/2,y*s-s*height_capture_window/2,s*width_capture_window,s*height_capture_window,0,0,300,200);
           }else if(count==1){
