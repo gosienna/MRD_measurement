@@ -84,7 +84,7 @@ function capture_circle_L(event){
   }else if(count_L==2){
     count_L=count_L+1;
   }else if(count_L==3){
-    mannual_MRD_L=yc-event.layerY;
+    mannual_MRD_L=ym-Math.round(event.clientY - cRect.top);
     count_L=0
   }
 
